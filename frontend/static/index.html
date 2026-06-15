@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算课程设计</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flask + Nginx 容器化应用</h1>
+    <p>学号：2023112511</p>
+    <p>姓名：黄金</p>
+    <p>后端服务状态：<span id="status">检查中...</span></p>
+
+    <script>
+        // 自动检查后端服务状态
+        fetch('/api/ping')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('status').textContent = '正常运行';
+                document.getElementById('status').style.color = 'green';
+            })
+            .catch(err => {
+                document.getElementById('status').textContent = '连接失败';
+                document.getElementById('status').style.color = 'red';
+            });
+    </script>
+</body>
+</html>
