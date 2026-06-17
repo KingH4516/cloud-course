@@ -1,0 +1,23 @@
+apiVersion: sparkoperator.k8s.io/v1beta2
+kind: SparkApplication
+metadata:
+  name: douban-movie-perf-comparison
+  namespace: default
+spec:
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  # 替换为教师提供的 SWR PySpark 镜像地址
+  image: swr.cn-north-4.myhuaweicloud.com/<YOUR_ORG>/pyspark:3.4
+  mainApplicationFile: local:///opt/spark/work/performance_comparison.py
+  sparkVersion: "3.4.0"
+  restartPolicy:
+    type: Never
+  driver:
+    cores: 1
+    memory: "2g"
+    serviceAccount: spark
+  executor:
+    cores: 1
+    instances: 2
+    memory: "1g"
