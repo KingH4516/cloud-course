@@ -72,8 +72,8 @@ if os.path.exists(local_csv_path):
         .option("escape", "\"") \
         .csv(local_path)
 else:
-    # CCE 集群模式：尝试 OBS 路径
-    data_path = "s3a://<YOUR_BUCKET>/douban_movies.csv"
+    # CCE 集群模式：使用 OBS 路径（桶名已替换为 douban2023112510）
+    data_path = "s3a://douban2023112510/douban_movies.csv"
     print(f"  使用 OBS 路径: {data_path}")
     df = spark.read \
         .option("header", "true") \
@@ -148,7 +148,6 @@ df_clean = df_clean \
     .withColumn("rating_score_float", col("rating_score").cast("float")) \
     .withColumn("rating_count_int", col("rating_count").cast("int")) \
     .withColumn("collect_count_int", col("collect_count").cast("int"))
-
 
 clean_count = df_clean.count()
 print(f"\n清洗后总行数: {clean_count}")

@@ -1,0 +1,25 @@
+﻿apiVersion: sparkoperator.k8s.io/v1beta2
+kind: SparkApplication
+metadata:
+  name: spark-pi
+  namespace: default
+spec:
+  type: Scala
+  mode: cluster
+  image: apache/spark:3.4.0
+  mainClass: org.apache.spark.examples.SparkPi
+  mainApplicationFile: "local:///opt/spark/examples/jars/spark-examples_2.12-3.4.0.jar"
+  sparkVersion: "3.4.0"
+  sparkConf:
+    "spark.kubernetes.driver.request.cores": "0.2"
+    "spark.kubernetes.executor.request.cores": "0.2"
+  driver:
+    cores: 1
+    memory: "512m"
+    memoryOverhead: "64m"
+    serviceAccount: spark
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+    memoryOverhead: "64m"

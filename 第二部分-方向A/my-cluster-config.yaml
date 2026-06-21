@@ -1,0 +1,18 @@
+﻿apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    server: https://122.9.45.169:5443  # 例如 https://192.168.1.100:5443
+    insecure-skip-tls-verify: true  # 课设环境跳过证书验证，方便
+  name: remote-cluster
+contexts:
+- context:
+    cluster: remote-cluster
+    user: external-user
+    namespace: default
+  name: remote-context
+current-context: remote-context
+users:
+- name: external-user
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6InpkQjg5Um5GZFo3RENtZ0NlUGJmSFJYZjU4VkJENFoySDRLV0tkaDZyMEkifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxODEzMjI1OTE1LCJpYXQiOjE3ODE2ODk5MTUsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiNDIzNDQwMjEtZDQyYi00ZDg5LWEwZTItMTlhNzEwMWU0ZTU1Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJleHRlcm5hbC11c2VyIiwidWlkIjoiODcxNzllMmUtMzFjNi00MDBiLWJhMjctOWFmNDI0Y2EwMmZjIn19LCJuYmYiOjE3ODE2ODk5MTUsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTpleHRlcm5hbC11c2VyIn0.IE4gyDNw-08AyDqaa71R0cTwf8cg83Eq6Xqvx4D2NvNSPTFcoOpjSzmFyS7wTaLK3cXasTSZ2ugKj52Dps1VZV7zVNDX1OzONZk0onl5EEHT0KefQ4T5MHsdbRfUK_ySItw5c_Md02lf0EwxBNUI7bQw1ms4ih2iQMJYfTbNYtYOd5rTOK0Av5PAz3Q6vObIuIJBIUVSXJ5F-jvRDCMaFIXabZYZRYEcicHJbP9M0-RPYVPwJWyDWGrMEb4DOrXl3Xl5QWh28NEaQXe0gh6eYDQGJ56y7uO19R-drqxk5twFVAi5SrPw9ZEwdPUmtmgEW_E4H1e1otu6wB3oOZ6aMTtOxEKKoyKNZRElw9dTOoZEvmShM7LQ3yqPMlbLISjwscZODO8AX_coylJwWsDEHaPTJoknczhS3rs7bPetToYv4gmMbjotvVVCCzsQAFmCkGw0QNrlaGX5D44QLBPNKVD2fXRwXTGH0jtf-ICxtFnTLvRqLoZGuKKvC3YnjaYd

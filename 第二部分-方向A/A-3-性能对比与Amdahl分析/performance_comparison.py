@@ -51,7 +51,8 @@ if os.path.exists(local_csv_path):
         .option("escape", "\"") \
         .csv(local_path)
 else:
-    data_path = "s3a://<YOUR_BUCKET>/douban_movies.csv"
+    # 使用 OBS 路径（桶名已替换为 douban2023112510）
+    data_path = "s3a://douban2023112510/douban_movies.csv"
     print(f"  使用 OBS 路径: {data_path}")
     df = spark.read \
         .option("header", "true") \
